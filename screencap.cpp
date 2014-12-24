@@ -151,7 +151,10 @@ int main(int argc, char** argv)
         s = screenshot.getStride();
         f = screenshot.getFormat();
         size = screenshot.getSize();
-    } else {
+    }
+	//Avoid printing out fb0 content to standard output
+	/*	
+	else {
         const char* fbpath = "/dev/graphics/fb0";
         int fb = open(fbpath, O_RDONLY);
         if (fb >= 0) {
@@ -174,6 +177,7 @@ int main(int argc, char** argv)
             close(fb);
         }
     }
+	*/
 
     if (base) {
         if (png) {
