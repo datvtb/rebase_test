@@ -151,33 +151,9 @@ int main(int argc, char** argv)
         s = screenshot.getStride();
         f = screenshot.getFormat();
         size = screenshot.getSize();
+    } else {
+        fprintf(stderr, "[ DATVTB ] main: display is NULL\n");	//DATVTB
     }
-	//Avoid printing out fb0 content to standard output
-	/*	
-	else {
-        const char* fbpath = "/dev/graphics/fb0";
-        int fb = open(fbpath, O_RDONLY);
-        if (fb >= 0) {
-            struct fb_var_screeninfo vinfo;
-            if (ioctl(fb, FBIOGET_VSCREENINFO, &vinfo) == 0) {
-                uint32_t bytespp;
-                if (vinfoToPixelFormat(vinfo, &bytespp, &f) == NO_ERROR) {
-                    size_t offset = (vinfo.xoffset + vinfo.yoffset*vinfo.xres) * bytespp;
-                    w = vinfo.xres;
-                    h = vinfo.yres;
-                    s = vinfo.xres;
-                    size = w*h*bytespp;
-                    mapsize = offset + size;
-                    mapbase = mmap(0, mapsize, PROT_READ, MAP_PRIVATE, fb, 0);
-                    if (mapbase != MAP_FAILED) {
-                        base = (void const *)((char const *)mapbase + offset);
-                    }
-                }
-            }
-            close(fb);
-        }
-    }
-	*/
 
     if (base) {
         if (png) {
