@@ -54,6 +54,8 @@ static void usage(const char* pname)
 
 static SkBitmap::Config flinger2skia(PixelFormat f)
 {
+	fprintf(stderr, "[ DATVTB ] SkBitmap: PixelFormat = %d\n", f);	//DATVTB
+	
     switch (f) {
         case PIXEL_FORMAT_RGB_565:
             return SkBitmap::kRGB_565_Config;
@@ -65,7 +67,8 @@ static SkBitmap::Config flinger2skia(PixelFormat f)
 static status_t vinfoToPixelFormat(const fb_var_screeninfo& vinfo,
         uint32_t* bytespp, uint32_t* f)
 {
-
+	fprintf(stderr, "[ DATVTB ] vinfoToPixelFormat: vinfo.bits_per_pixel = %d\n", vinfo.bits_per_pixel);	//DATVTB
+	
     switch (vinfo.bits_per_pixel) {
         case 16:
             *f = PIXEL_FORMAT_RGB_565;
